@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.yb.push"
+        minSdkVersion 14
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        manifestPlaceholders = [
+                PUSH_SCHEME:"yb",
+                GETUI_APP_ID : "",
+                GETUI_APP_KEY : "",
+                GETUI_APP_SECRET : "",
+                XIAOMI_APP_ID : "",
+                XIAOMI_APP_KEY : "",
+                VIVO_APP_ID : "",
+                VIVO_APP_KEY : "",
+                HUAWEI_APP_ID : "",
+                OPPO_APP_KEY : "",
+                OPPO_APP_SECRET : ""
+        ]
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    signingConfigs {
+        config {
+            storeFile file('key.jks')
+            storePassword "yuanbin"
+            keyAlias "key"
+            keyPassword "yuanbin"
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
+        }
+    }
+
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api 'com.android.support:appcompat-v7:27.1.1'
+    implementation project(':core')
+}

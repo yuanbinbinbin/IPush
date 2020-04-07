@@ -1,0 +1,29 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.yb.push">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name=".PushHandleService">
+            <intent-filter>
+                <action android:name="ipush_action_receive_token" />
+                <action android:name="ipush_action_receive_pass_through_message" />
+                <action android:name="ipush_action_receive_notification_message_clicked" />
+                <action android:name="ipush_action_receive_notification_message_arrived" />
+            </intent-filter>
+        </service>
+    </application>
+</manifest>
